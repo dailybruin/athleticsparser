@@ -16,7 +16,13 @@ for name in names:
    for name in range(len(names)):
    		data["categories"].append({"name": names[name].string, "categories": []})
 
-sections = soup.find('center').find('font').find_all('font', recursive=False)
-for center in sections:
+sections = soup.find('center').find('font').find_all('font')
+for center in range(len(sections)):
+	if sections[center].find('h3'):
+		center = sections[center].find('center').find('h3')
+		print center
+
 
 jsonData = json.dumps(data)
+
+print jsonData
