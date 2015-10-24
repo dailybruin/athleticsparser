@@ -7,15 +7,15 @@ html = urllib2.urlopen(url).read()
 soup = BeautifulSoup(html, "html.parser")
 
 data = {}
-data["categories"] = {}
+data["categories"] = []
 
 names = soup.find_all('table')
 for name in names:
    names = name.find_all('h3')
 
-   for name in range(0, len(names)):
-   		data["categories"][name] = {}
-   		data["categories"][name]["name"] = names[name].string
+   for name in range(len(names)):
+   		data["categories"].append({"name": names[name].string, "categories": []})
+   		#{"type": ..., "columns": [], "categories": []}
 
 jsonData = json.dumps(data)
 
