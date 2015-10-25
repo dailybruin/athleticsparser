@@ -24,7 +24,7 @@ for name in range(len(names)):
 		data["categories"][name]["offense"][row.find_all("td")[0].string] = row.find_all("td")[1].get_text().split(" ")[0]
 		data["categories"][name]["defense"][row.find_all("td")[2].string] = row.find_all("td")[3].get_text().split(" ")[0]
 
-jsonData = json.dumps(OrderedDict(data))
+jsonData = json.dumps(data)
 print jsonData
 
 
