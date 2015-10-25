@@ -19,12 +19,12 @@ for name in range(len(names)):
 # Find values for offense and defense
 names = soup.find("div", {"class": "module"}).find_all("h2")
 for name in range(len(names)):
-	rows = soup.find("div", {"class": "module"}).find("tbody").find_all("tr")
+	rows = soup.find("div", {"class": "module"}).find_all("tbody")[name].find_all("tr")
 	for row in rows:
 		data["categories"][name]["offense"][row.find_all("td")[0].string] = row.find_all("td")[1].get_text().split(" ")[0]
 		data["categories"][name]["defense"][row.find_all("td")[2].string] = row.find_all("td")[3].get_text().split(" ")[0]
 
-jsonData = json.dumps(data)
+jsonData = json.dumps(OrderedDict(data))
 print jsonData
 
 
